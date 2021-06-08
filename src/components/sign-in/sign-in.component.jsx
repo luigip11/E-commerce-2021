@@ -2,6 +2,8 @@ import React from 'react';
 
 import FormInput from '../../components/form-input/form-input.component';
 
+import CustomButton from '../../components/custom-button/custom-button.component';
+
 import './sign-in.styles.scss';
 
 //class component poichè dobbiamo memorizzare ciò che l'utente sta digitando
@@ -53,7 +55,7 @@ class SignIn extends React.Component{
                     required />
                     
 
-                    <input type="submit" value="Invia" />
+                    <CustomButton type="submit"> Invia </CustomButton>
                 </form>
             </div>
         );
