@@ -8,12 +8,15 @@ import { auth } from '../../firebase/firebase.utils';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';  //sintassi speciale per importare SVG
 
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+
 import './header.styles.scss';
 
 //header component = functional component => ...
 //nelle quadre del functional component viene dichiarata la variabile currentUser
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
     <div className='header'>
         <Link className='logo-container' to="/">
             <Logo className='logo' />
@@ -32,12 +35,18 @@ const Header = ({ currentUser }) => (
                 :
                 <Link className='option' to='/signin'>ACCEDI</Link>
             }
+            <CartIcon />
         </div>
+        {
+            hidden ? null :
+            <CartDropdown />
+        }
     </div>
 );
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
-})
+const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
+    currentUser,
+    hidden
+});
 
 export default connect(mapStateToProps)(Header);
