@@ -11,7 +11,7 @@ const CollectionPreview = ({ title, items }) => (
     <div className='collection-preview'>
       <div className='flex-container'>
         <h1 className='title'>{title.toUpperCase()}</h1>
-        <Link to={"/signin"} className='view-all'>Vedi tutti</Link>
+        <Link to={"/"} className='view-all'>Vedi tutti</Link>
       </div>
       <div className='preview'>
         {items
