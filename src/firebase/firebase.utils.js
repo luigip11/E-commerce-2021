@@ -66,7 +66,7 @@ const config = {
 
   //convertire la collezione in oggetto invece di un array
   export const convertCollectionsSnapshotToMap = (collections) => {
-    const transformedCollection = collections.docs.map( doc => {
+    const transformedCollection = collections.docs.map((doc) => {
       const { title, items } = doc.data();
 
       return {
@@ -74,7 +74,7 @@ const config = {
         id: doc.id,
         title,
         items
-      }
+      };
     });
     //funzione di riduzione per oggetto finale con 2° param oggetto vuoto
     return transformedCollection.reduce((accumulator, collection) => {   //oggetto va nella 1° nuova collezione

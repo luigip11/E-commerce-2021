@@ -1,36 +1,36 @@
 const INITIAL_STATE = {
     sections: [
         {
-          title: 'CAPPELLI',
+          title: 'Cappelli',
           imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
           id: 1,
-          linkUrl: 'shop/hats'
+          linkUrl: 'shop/cappelli'
         },
         {
-          title: 'GIACCHE',
+          title: 'Giacche',
           imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
           id: 2,
-          linkUrl: 'shop/jackets'
+          linkUrl: 'shop/giacche'
         },
         {
-          title: 'SNEAKERS',
+          title: 'Sneakers',
           imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
           id: 3,
           linkUrl: 'shop/sneakers'
         },
         {
-          title: 'DONNA',
+          title: 'Donna',
           imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
           size: 'large',
           id: 4,
-          linkUrl: 'shop/womens'
+          linkUrl: 'shop/donna'
         },
         {
-          title: 'UOMO',
+          title: 'Uomo',
           imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
           size: 'large',
           id: 5,
-          linkUrl: 'shop/mens'
+          linkUrl: 'shop/uomo'
         }
       ]
 };

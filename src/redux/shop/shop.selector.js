@@ -23,5 +23,15 @@ export const selectCollectionsForPreview = createSelector (
 export const selectCollection = collectionUrlParam =>
   createSelector(
     [selectCollections],
-    collections => collections ? collections[collectionUrlParam] : null
+    collections => (collections ? collections[collectionUrlParam] : null)
+  );
+
+  export const selectIsCollectionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+  );
+
+  export const selectIsCollectionsLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections  //la stringa non risulta vuota quindi ci restituisce un valore true per vedere collez.
   );
