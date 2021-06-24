@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -16,13 +16,7 @@ import Header from './components/header/header.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions'
 
-//const HatsPage = () => (
-//  <div>
-//   <h1>HATS PAGE</h1> 
-//  </div>
-//  );
-
-class App extends React.Component {
+const App = ({ checkUserSession, currentUser }) => {
   // constructor() {
   //   super();
 
@@ -31,13 +25,13 @@ class App extends React.Component {
   //   };
   // }
 
-  unsubscribeFromAuth = null;
+  // unsubscribeFromAuth = null;
 
   //se l'utente si è loggato mostralo
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-    checkUserSession();
+  // componentDidMount() {
+  //   const { checkUserSession } = this.props;
+  //   checkUserSession();
 
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
     //   // this.setState({ currentUser: user });
@@ -57,15 +51,18 @@ class App extends React.Component {
     //   setCurrentUser(userAuth); //se l'utente si disconnette lo saprà
       
     // });
-  }
+    // }
 
   //chiudi la sottoscrizione dello script
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount() {
+  //   this.unsubscribeFromAuth();
+  // }
 
-  render() {
+  useEffect(() => {
+    checkUserSession()
+  }, [checkUserSession]);  //se non impostiamo un secondo parametro, useEffect sarà eseguito in loop
+
   return (
     <div>
       <Header />
@@ -74,7 +71,7 @@ class App extends React.Component {
        <Route path='/shop' component={ShopPage} />
        <Route exact path='/checkout' component={CheckoutPage} />  
        <Route exact path='/signin' 
-         render= {() => this.props.currentUser ? 
+         render= {() => currentUser ? 
           (<Redirect to='/' />) : 
           (<SignInAndSignUpPage />)
           } />    
@@ -82,7 +79,6 @@ class App extends React.Component {
     </div>
   );
   }
-};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser

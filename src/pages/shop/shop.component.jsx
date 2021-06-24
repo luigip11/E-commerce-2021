@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -15,14 +15,14 @@ import CollectionPageContainer from '../collection/collection.container';
 //   </div>
 // );
 
-class ShopPage extends React.Component {
-  // state = {
-  //   loading: true,
-  // };
+const ShopPage = ({ match, fetchCollectionsStart }) => {
+  useEffect(() => {
+    fetchCollectionsStart();
+  }, [fetchCollectionsStart]);
 
   // unsubscribeFromSnapshot = null;            //nuovo metedo di cancellazione istantanea della matrice di collez
 
-  componentDidMount() {
+  // componentDidMount() {
     // const { updateCollections } = this.props;
     // const collectionRef = firestore.collection('collections');  //invia istantanea dell array di oggetti
     
@@ -40,12 +40,12 @@ class ShopPage extends React.Component {
     //   this.setState({ loading: false });
     // });
 
-    const { fetchCollectionsStart } = this.props;
-    fetchCollectionsStart();
-  }
+  //   const { fetchCollectionsStart } = this.props;
+  //   fetchCollectionsStart();
+  // }
 
-  render() {
-    const { match } = this.props;
+  // render() {
+    // const { match } = this.props;
     // const { loading } = this.state;
     return(
       <div className='shop-page'>
@@ -56,7 +56,7 @@ class ShopPage extends React.Component {
       </div>
     );
   }
-}
+
 
 const mapDispatchToProps = dispatch => ({
   // updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
