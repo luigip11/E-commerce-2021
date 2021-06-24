@@ -83,14 +83,23 @@ const config = {
     } , {});   //passiamo oggetto iniziale
   };
 
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        unsubscribe();
+        resolve(userAuth);
+      }, reject);
+    });
+  };
+
   export const auth = firebase.auth();
   export const firestore = firebase.firestore();
 
   //accesso a provider per autenticazione a Google
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' }); //attivare sempre il popup di Google Auth
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({ prompt: 'select_account' }); //attivare sempre il popup di Google Auth
+  export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
   export default firebase;
 
