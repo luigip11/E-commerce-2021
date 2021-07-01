@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extendend: true }));
 // app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
+    app.use(enforce.HTTPS({ trustProtoHeader: true }));
     app.use(express.static(path.join(__dirname, 'client/build')));   //dirname fa parte di Node.js
 
     app.get('*', function(req, res) {  //per ogni get ci sono una richiesta e una risposta che invia un file
@@ -31,6 +32,10 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(port, error => {
     if (error) throw error;
     console.log('Il server è in esecuzione sulla porta ' + port);
+});
+
+app.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
 app.post('/payment', (req, res) => { //richiesta di pagamento
