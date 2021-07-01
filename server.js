@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
+const enforce = require('express-sslify');
 
 //se sono in fase di sviluppo o test, richiedo dotenv library e dirò configurala
 
@@ -17,6 +18,7 @@ const port = process.env.PORT || 5000;  //porta sui ospito l'app è il processo,
 app.use(compression());
 app.use(bodyParser.json());             //le richieste che arrivano al server le voglio convertire in json
 app.use(bodyParser.urlencoded({ extendend: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));  //per avere HTTPS
 
 // app.use(cors());
 
