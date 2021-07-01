@@ -2,6 +2,7 @@ const express = require('express');
 // const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const compression = require('compression');
 
 //se sono in fase di sviluppo o test, richiedo dotenv library e dirò configurala
 
@@ -13,6 +14,7 @@ const app = express();  //libreria che ci permette di buildare un server API
 
 const port = process.env.PORT || 5000;  //porta sui ospito l'app è il processo, Heroku la sistema per noi
 
+app.use(compression());
 app.use(bodyParser.json());             //le richieste che arrivano al server le voglio convertire in json
 app.use(bodyParser.urlencoded({ extendend: true }));
 
